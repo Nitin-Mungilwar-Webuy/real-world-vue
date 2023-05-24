@@ -2,11 +2,16 @@
 import { ref, onMounted } from 'vue'
 import EventServices from '@/services/EventServices.js'
 const event = ref(null)
-const id = ref(123)
+// const id = ref(123)
+const props = defineProps({
+  id: {
+    required: true,
+  },
+})
 onMounted(() => {
   // fetch event by id  and set local data
 
-  EventServices.getEvent(id.value)
+  EventServices.getEvent(props.id)
     .then((response) => {
       event.value = response.data
       console.log(response.data)
